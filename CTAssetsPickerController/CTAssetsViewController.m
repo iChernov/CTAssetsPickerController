@@ -100,6 +100,7 @@ NSString * const CTAssetsSupplementaryViewIdentifier = @"CTAssetsSupplementaryVi
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
+    [self.navigationController.navigationBar.items[0] setTitle: @""];
     [self setupButtons];
     [self setupToolbar];
     [self setupAssets];
@@ -142,6 +143,12 @@ NSString * const CTAssetsSupplementaryViewIdentifier = @"CTAssetsSupplementaryVi
                                      style:UIBarButtonItemStyleDone
                                     target:self.picker
                                     action:@selector(finishPickingAssets:)];
+    
+    self.navigationItem.backBarButtonItem =
+    [[UIBarButtonItem alloc] initWithTitle:@""
+                                     style:UIBarButtonItemStylePlain
+                                    target:self
+                                    action:@selector(popBack)];
     
     if (self.picker.alwaysEnableDoneButton)
         self.navigationItem.rightBarButtonItem.enabled = YES;
